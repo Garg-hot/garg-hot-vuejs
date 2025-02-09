@@ -40,6 +40,7 @@ const handleLogin = async () => {
   error.value = ''
   loading.value = true
   try {
+    router.push('/dashboard')
     // Vérifier d'abord si l'utilisateur n'est pas déjà connecté
     const response = await fetch('/api/auth/check', {
       method: 'POST',
