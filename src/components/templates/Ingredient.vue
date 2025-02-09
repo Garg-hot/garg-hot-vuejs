@@ -71,7 +71,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="categorie-container">
+    <div class="categorie-form">
     <h1>Ingrédients</h1>
 
     <!-- Message d'erreur -->
@@ -107,5 +108,143 @@ onMounted(() => {
       </div>
     </div>
   </div>
+</div>
 </template>
+<style scoped>
+.categorie-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  color: #000;
+}
+
+.categorie-form {
+  background: white;
+  padding: 30px;
+  border: 2px solid #000;
+  width: 100%;
+  max-width: 300px;
+}
+
+.categorie-list {
+  background: white;
+  padding: 30px;
+  border: 2px solid #000;
+  width: 100%;
+  max-width: 500px;
+}
+
+.edit-form {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #000;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000;
+  font-size: 16px;
+  color: #000;
+}
+
+.form-button {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 2px solid #000;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.form-button:hover {
+  background-color: #f0f0f0;
+}
+
+.form-button.save {
+  color: #27ae60;
+}
+
+.form-button.cancel {
+  color: #7f8c8d;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.item-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.item-name {
+  font-size: 16px;
+  color: #000;
+}
+
+.item-quantity {
+  font-size: 14px;
+  color: #666;
+}
+
+.item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-button {
+  padding: 5px 10px;
+  border: 1px solid #000;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #f0f0f0;
+}
+
+.action-button.edit {
+  color: #2c3e50;
+}
+
+.action-button.delete {
+  color: #e74c3c;
+}
+</style>
 
