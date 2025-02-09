@@ -72,40 +72,31 @@ onMounted(() => {
 
 <template>
   <div class="categorie-container">
-
     <div class="categorie-form">
-      <h2>Nouvel Ingrédient</h2>
-      <!-- Message d'erreur -->
-      <div v-if="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
-      <!-- Formulaire d'ajout -->
-      <div class="add-form">
-        <div class="form-group">
-          <input v-model="newIngredient.nom" placeholder="Nom de l'ingrédient" required />
-        </div>
-        <button @click="addIngredient" class="form-button">Ajouter</button>
-      </div>
+    <h1>Ingrédients</h1>
+
+    <!-- Message d'erreur -->
+    <div v-if="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Formulaire d'ajout -->
+    <div class="add-form">
+      <input v-model="newIngredient.nom" placeholder="Nom de l'ingrédient" required />
+      <button @click="addIngredient">Ajouter</button>
     </div>
 
     <!-- Liste des ingrédients -->
-    <div class="categorie-list">
-      <h2>Liste des Ingrédients</h2>
-      <div class="list-container">
-        <div v-for="ingredient in ingredients" :key="ingredient.id">
-          <div class="item-info">
-            <span class="item-name">{{ ingredient.nom }}</span>
-            <div class="item-actions">
-              <button @click="editIngredient = { ...ingredient }" class="action-button edit">Éditer</button>
-              <button @click="deleteIngredient(ingredient)" class="action-button delete">Supprimer</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ul>
+      <li v-for="ingredient in ingredients" :key="ingredient.id">
+        {{ ingredient.nom }}
+        <button @click="editIngredient = { ...ingredient }">Éditer</button>
+        <button @click="deleteIngredient(ingredient)">Supprimer</button>
+      </li>
+    </ul>
 
     <!-- Formulaire d'édition -->
-    <div v-if="editIngredient" class="categorie-form edit-form">
+    <div v-if="editIngredient" class="edit-form">
       <h2>Édition de l'ingrédient</h2>
       <div>
         <label for="nom">Nom</label>
@@ -116,10 +107,9 @@ onMounted(() => {
         <button @click="editIngredient = null">Annuler</button>
       </div>
     </div>
-
   </div>
+</div>
 </template>
-
 <style scoped>
 .categorie-container {
   display: flex;
@@ -237,6 +227,7 @@ h2 {
 }
 
 .action-button {
+  
   padding: 5px 10px;
   border: 1px solid #000;
   background: white;
@@ -257,3 +248,4 @@ h2 {
   color: #e74c3c;
 }
 </style>
+
