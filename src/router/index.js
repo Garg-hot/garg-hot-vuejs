@@ -7,6 +7,7 @@ import Plat from '../components/templates/Plat.vue'
 import Ingredient from '../components/templates/Ingredient.vue'
 import Commande from '../components/templates/Commande.vue'
 import Login from '../components/templates/Login.vue'
+import Prix from '../components/templates/Prix.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -39,6 +40,11 @@ const router = createRouter({
           path: 'ingredients',
           name: 'ingredients',
           component: Ingredient
+        },
+        {
+          path: 'prix',
+          name: 'prix',
+          component: Prix
         },
         {
           path: 'commandes',
