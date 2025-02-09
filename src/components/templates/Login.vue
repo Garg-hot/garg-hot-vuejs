@@ -27,16 +27,50 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { auth } from '../firebase/config'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 const router = useRouter()
 const username = ref('')
 const password = ref('')
+const error = ref('')
+const loading = ref(false)
 
-const handleLogin = () => {
-  // Ici vous pourrez ajouter la logique d'authentification
-  if (username.value && password.value) {
-    // Pour l'instant, on redirige simplement vers le dashboard
-    router.push('/dashboard')
+const handleLogin = async () => {
+  error.value = ''
+  loading.value = true
+  try {
+    // Vérifier d'abord si l'utilisateur n'est pas déjà connecté
+    const response = await fetch('/api/auth/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: username.value
+      })
+    });
+
+    const sessionCheck = await response.json();
+    if (!response.ok) {
+      throw new Error(sessionCheck.message || 'Session check failed');
+    }
+
+    // Si la vérification de session est OK, procéder à la connexion Firebase
+    const userCredential = await signInWithEmailAndPassword(auth, username.value, password.value)
+    if (userCredential.user) {
+      router.push('/dashboard')
+    }
+  } catch (e: any) {
+    if (e.code === 'auth/invalid-credential') {
+      error.value = 'Email ou mot de passe incorrect'
+    } else if (e.message) {
+      error.value = e.message
+    } else {
+      error.value = 'Une erreur est survenue lors de la connexion'
+    }
+  } finally {
+    loading.value = false
   }
 }
 </script>
