@@ -1,7 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { auth } from '../firebase/config';  // Si Login.vue est dans src/components/templates/
-
+import { getAuth } from 'firebase/auth'; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyDU9C3qhe0oDmBaXgOrgdJh1KYhKFXUpwk",
@@ -14,6 +12,9 @@ const firebaseConfig = {
 
 // Initialisation de Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const auth = getAuth(app); 
 
-export { auth };
+export { auth }; 
+
+
+

@@ -7,9 +7,9 @@
       <h1 class="title">Connexion</h1>
       <form @submit.prevent="handleLogin" class="login-form">
         <input 
-          type="text" 
+          type="email" 
           v-model="username" 
-          placeholder="Nom d'utilisateur"
+          placeholder="Email"
           class="form-input"
         />
         <input 
@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { auth } from '../firebase/config'
+import { auth } from '../../firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
 const router = useRouter()
