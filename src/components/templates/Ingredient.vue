@@ -72,58 +72,70 @@ onMounted(() => {
 
 <template>
   <div class="categorie-container">
-    <div class="categorie-form">
-    <h1>Ingrédients</h1>
-
     <!-- Message d'erreur -->
     <div v-if="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
 
-    <!-- Formulaire d'ajout -->
-    <div class="add-form">
-      <input v-model="newIngredient.nom" placeholder="Nom de l'ingrédient" required />
-      <button @click="addIngredient">Ajouter</button>
+    <div class="form-container">
+      <!-- Formulaire d'ajout -->
+      <div class="categorie-form">
+        <h2>Ajouter un Ingrédient</h2>
+        <div class="add-form">
+          <input v-model="newIngredient.nom" placeholder="Nom de l'ingrédient" required />
+          <button @click="addIngredient">Ajouter</button>
+        </div>
+      </div>
+
+      <!-- Formulaire d'édition -->
+      <div v-if="editIngredient" class="categorie-form edit-form">
+        <h2>Édition de l'ingrédient</h2>
+        <div>
+          <label for="nom">Nom</label>
+          <input id="nom" v-model="editIngredient.nom" placeholder="Nom" required />
+        </div>
+        <div class="edit-actions">
+          <button @click="updateIngredient">Mettre à jour</button>
+          <button @click="editIngredient = null">Annuler</button>
+        </div>
+      </div>
     </div>
 
     <!-- Liste des ingrédients -->
-    <ul>
-      <li v-for="ingredient in ingredients" :key="ingredient.id">
-        {{ ingredient.nom }}
-        <button @click="editIngredient = { ...ingredient }">Éditer</button>
-        <button @click="deleteIngredient(ingredient)">Supprimer</button>
-      </li>
-    </ul>
-
-    <!-- Formulaire d'édition -->
-    <div v-if="editIngredient" class="edit-form">
-      <h2>Édition de l'ingrédient</h2>
-      <div>
-        <label for="nom">Nom</label>
-        <input id="nom" v-model="editIngredient.nom" placeholder="Nom" required />
-      </div>
-      <div class="edit-actions">
-        <button @click="updateIngredient">Mettre à jour</button>
-        <button @click="editIngredient = null">Annuler</button>
-      </div>
+    <div class="categorie-list">
+      <h2>Liste des Ingrédients</h2>
+      <ul>
+        <li v-for="ingredient in ingredients" :key="ingredient.id">
+          {{ ingredient.nom }}
+          <button @click="editIngredient = { ...ingredient }" class="action-button edit">Éditer</button>
+          <button @click="deleteIngredient(ingredient)" class="action-button delete">Supprimer</button>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
 </template>
+
 <style scoped>
 .categorie-container {
   display: flex;
-  gap: 30px;
+  flex-direction: column;
   align-items: flex-start;
   color: #000;
+  gap: 30px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .categorie-form {
   background: white;
   padding: 30px;
   border: 2px solid #000;
-  width: 100%;
-  max-width: 300px;
 }
 
 .categorie-list {
@@ -155,19 +167,14 @@ h2 {
   color: #000;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-input {
+.add-form input {
   width: 100%;
   padding: 10px;
   border: 1px solid #000;
   font-size: 16px;
-  color: #000;
 }
 
-.form-button {
+.add-form button {
   width: 100%;
   padding: 12px;
   background: white;
@@ -175,55 +182,39 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
-  margin-bottom: 10px;
+  margin-top: 10px;
   color: #000;
 }
 
-.form-button:hover {
+.add-form button:hover {
   background-color: #f0f0f0;
 }
 
-.form-button.save {
-  color: #27ae60;
+.edit-actions button {
+  width: 48%;
+  padding: 12px;
+  background: white;
+  border: 2px solid #000;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-.form-button.cancel {
-  color: #7f8c8d;
+.edit-actions button:hover {
+  background-color: #f0f0f0;
 }
 
-.list-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.list-item {
+ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   border: 1px solid #000;
-}
-
-.item-info {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.item-name {
-  font-size: 16px;
-  color: #000;
-}
-
-.item-quantity {
-  font-size: 14px;
-  color: #666;
-}
-
-.item-actions {
-  display: flex;
-  gap: 10px;
 }
 
 .action-button {
@@ -246,5 +237,10 @@ h2 {
 .action-button.delete {
   color: #e74c3c;
 }
-</style>
 
+.error-message {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+</style>

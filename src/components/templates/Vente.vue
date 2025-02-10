@@ -114,8 +114,8 @@ onMounted(() => {
           <input id="statut" v-model="editVente.statut" placeholder="Statut" required />
         </div>
         <div class="edit-actions">
-          <button @click="updateVente">Mettre à jour</button>
-          <button @click="editVente = null">Annuler</button>
+          <button @click="updateVente" class="action-button delete">Mettre à jour</button>
+          <button @click="editVente = null" class="action-button delete">Annuler</button>
         </div>
       </div>
     </div>

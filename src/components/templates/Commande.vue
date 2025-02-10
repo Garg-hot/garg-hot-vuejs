@@ -90,8 +90,8 @@ onMounted(() => {
       <ul>
         <li v-for="commande in commandes" :key="commande.id">
           Commande ID: {{ commande.id }} - Statut: {{ commande.statut }} - Client ID: {{ commande.id_client }}
-          <button @click="editCommande = { ...commande }">Éditer</button>
-          <button @click="deleteCommande(commande)">Supprimer</button>
+          <button @click="editCommande = { ...commande }"class="action-button edit">Éditer</button>
+          <button @click="deleteCommande(commande)"class="action-button delete">Supprimer</button>
         </li>
       </ul>
 

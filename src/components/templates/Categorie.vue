@@ -90,8 +90,8 @@ onMounted(() => {
       <ul>
         <li v-for="categorie in categories" :key="categorie.id">
           {{ categorie.nom }}
-          <button @click="editCategorie = { ...categorie }">Éditer</button>
-          <button @click="deleteCategorie(categorie)">Supprimer</button>
+          <button @click="editCategorie = { ...categorie }"class="action-button edit">Éditer</button>
+          <button @click="deleteCategorie(categorie)"class="action-button delete">Supprimer</button>
         </li>
       </ul>
 

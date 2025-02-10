@@ -238,8 +238,8 @@ onMounted(() => {
         </div>
       </div>
       <div class="edit-actions">
-        <button @click="updatePlat" class="btn-primary">Mettre à jour</button>
-        <button @click="() => { editPlat = null; }" class="btn-cancel">Annuler</button>
+        <button @click="updatePlat" class="action-button edit">Mettre à jour</button>
+        <button @click="() => { editPlat = null; }" class="action-button delete">Annuler</button>
       </div>
     </div>
 
