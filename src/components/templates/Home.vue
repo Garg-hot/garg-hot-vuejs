@@ -9,7 +9,7 @@
     </div>
     <div class="content">
       <div class="actions">
-        <router-link to="/login" class="continue-button">Continuer</router-link>
+        <router-link to="/dashboard" class="continue-button">Continuer</router-link>
       </div>
     </div>
   </div>
