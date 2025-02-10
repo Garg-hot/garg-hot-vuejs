@@ -43,8 +43,8 @@ const updateVente = async () => {
   if (!editVente.value) return;
   try {
     await venteService.updateVente(editVente.value.id, editVente.value);
-    ventes.value = ventes.value.map(vnt =>
-      vnt.id === editVente.value.id ? { ...editVente.value } : vnt
+    ventes.value = ventes.value.map(vente =>
+      vente.id === editVente.value.id ? { ...editVente.value } : vente
     );
     editVente.value = null;
   } catch (error) {
@@ -57,7 +57,7 @@ const updateVente = async () => {
 const deleteVente = async (vente) => {
   try {
     await venteService.deleteVente(vente.id);
-    ventes.value = ventes.value.filter(vnt => vnt.id !== vente.id);
+    ventes.value = ventes.value.filter(v => v.id !== vente.id);
   } catch (error) {
     errorMessage.value = "Erreur lors de la suppression de la vente.";
     console.error(error);
