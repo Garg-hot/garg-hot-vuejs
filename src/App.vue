@@ -34,4 +34,30 @@ body {
   min-height: 100vh;
   width: 100%;
 }
+button{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 300px;
+  position: fixed;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+button {
+  padding: 12px 20px;
+  width: 200px;
+  border: 2px solid #000;
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
 </style>

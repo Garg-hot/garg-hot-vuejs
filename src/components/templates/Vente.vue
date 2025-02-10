@@ -89,9 +89,20 @@ onMounted(() => {
       <!-- Liste des ventes -->
       <ul>
         <li v-for="vente in ventes" :key="vente.id">
-          {{ vente.nom }}
-          <button @click="editVente = { ...vente }">Éditer</button>
-          <button @click="deleteVente(vente)">Supprimer</button>
+          <div class="vente-details">
+            <p><strong>Vente ID:</strong> {{ vente.id }}</p>
+            <p><strong>Statut:</strong> {{ vente.statut }}</p>
+            <p><strong>Date de création:</strong> {{ new Date(vente.createdAt).toLocaleString() }}</p>
+            <p><strong>Commande:</strong> {{ vente.commande.id }}</p>
+            <p><strong>Client ID:</strong> {{ vente.commande.id_client }}</p>
+            <ul>
+              <li v-for="plat in vente.commande.plats" :key="plat.nom">
+                {{ plat.nom }}
+              </li>
+            </ul>
+            <button @click="editVente = { ...vente }">Éditer</button>
+            <button @click="deleteVente(vente)">Supprimer</button>
+          </div>
         </li>
       </ul>
 
@@ -99,8 +110,8 @@ onMounted(() => {
       <div v-if="editVente" class="edit-form">
         <h2>Édition de la vente</h2>
         <div>
-          <label for="nom">Nom</label>
-          <input id="nom" v-model="editVente.nom" placeholder="Nom" required />
+          <label for="statut">Statut</label>
+          <input id="statut" v-model="editVente.statut" placeholder="Statut" required />
         </div>
         <div class="edit-actions">
           <button @click="updateVente">Mettre à jour</button>
@@ -133,6 +144,10 @@ onMounted(() => {
   border: 2px solid #000;
   width: 100%;
   max-width: 500px;
+}
+
+.vente-details {
+  margin-bottom: 10px;
 }
 
 .edit-form {
