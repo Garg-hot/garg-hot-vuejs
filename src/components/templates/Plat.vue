@@ -248,6 +248,17 @@ onMounted(() => {
 </template>
 
 <style scoped>
+* {
+  color: #000; /* Définit la couleur de texte noire pour tous les éléments */
+}
+
+h1, h2, h3, p, input, textarea, select {
+  color: #000; /* S'assure que le texte dans les en-têtes, paragraphes, et champs de saisie est noir */
+}
+
+textarea, input[type="text"], input[type="number"], select {
+  color: #000; /* S'assure que le texte dans les champs de saisie est noir */
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -390,17 +401,6 @@ button:hover {
 .edit-form {
   animation: slideIn 0.3s ease-out;
 }
-/* Ajoutez ceci dans votre section style */
-* {
-  color: #000; /* Définit la couleur de texte noire pour tous les éléments */
-}
 
-h1, h2, h3, p, input, textarea, select {
-  color: #000; /* S'assure que le texte dans les en-têtes, paragraphes, et champs de saisie est noir */
-}
-
-textarea, input[type="text"], input[type="number"], select {
-  color: #000; /* S'assure que le texte dans les champs de saisie est noir */
-}
 
 </style>
