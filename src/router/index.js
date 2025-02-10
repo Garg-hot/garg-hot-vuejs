@@ -6,6 +6,7 @@ import Categorie from '../components/templates/Categorie.vue'
 import Plat from '../components/templates/Plat.vue'
 import Ingredient from '../components/templates/Ingredient.vue'
 import Commande from '../components/templates/Commande.vue'
+import Commande from '../components/templates/Vente.vue'
 import Login from '../components/templates/Login.vue'
 
 const router = createRouter({
@@ -44,6 +45,11 @@ const router = createRouter({
           path: 'commandes',
           name: 'commandes',
           component: Commande
+        },        
+        {
+          path: 'ventes',
+          name: 'ventes',
+          component: Vente
         }
       ]
     }
