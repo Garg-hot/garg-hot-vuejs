@@ -119,23 +119,25 @@ onMounted(() => {
 .categorie-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   color: #000;
   gap: 30px;
 }
 
 .form-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
   width: 100%;
-  max-width: 400px;
+  max-width: 800px;
 }
 
 .categorie-form {
   background: white;
-  padding: 30px;
+  padding: 20px;
   border: 2px solid #000;
+  width: 48%;
 }
 
 .categorie-list {
