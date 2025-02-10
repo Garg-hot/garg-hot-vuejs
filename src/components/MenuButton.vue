@@ -3,6 +3,7 @@ const menuItems = [
   { name: 'Ingredient', path: '/dashboard/ingredients' },
   { name: 'Categorie', path: '/dashboard/categories' },
   { name: 'Plat', path: '/dashboard/plats' },
+  { name: 'Stock', path: '/dashboard/stocks' },
   { name: 'Vente', path: '/dashboard/ventes' },
   { name: 'Commande', path: '/dashboard/commandes' }
 ]
