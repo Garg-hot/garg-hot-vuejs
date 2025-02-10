@@ -146,17 +146,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <h1>Plats</h1>
 
     <div class="add-form">
-      <input v-model="newPlat.nom" placeholder="Nom du plat" />
+      <input v-model="newPlat.nom" class="input-field" placeholder="Nom du plat" />
       <br>
-      <textarea v-model="newPlat.description" placeholder="Description"></textarea>
+      <textarea v-model="newPlat.description" class="textarea-field" placeholder="Description"></textarea>
       <br>
-      <input v-model="newPlat.duration" type="number" placeholder="Durée (min)" />
+      <input v-model="newPlat.duration" type="number" class="input-field" placeholder="Durée (min)" />
       <br>
-      <select v-model="newPlat.categorie" required>
+      <select v-model="newPlat.categorie" class="select-field" required>
         <option value="" disabled selected>-- Sélectionnez une catégorie --</option>
         <option v-for="cat in categories" :key="cat.id" :value="cat.id">
           {{ cat.nom }}
@@ -164,7 +164,7 @@ onMounted(() => {
       </select>
       <br>
       <div class="ingredients-section">
-        <h3>Ingrédients</h3>
+        <h3 class="section-title">Ingrédients</h3>
         <div class="ingredients-grid">
           <div v-for="ingredient in ingredients" :key="ingredient.id" class="ingredient-item">
             <input
@@ -178,11 +178,11 @@ onMounted(() => {
         </div>
       </div>
       <br>
-      <button @click="addPlat">Ajouter</button>
+      <button @click="addPlat" class="btn-primary">Ajouter</button>
     </div>
 
-    <ul>
-      <li v-for="plat in plats" :key="plat.id">
+    <ul class="plat-list">
+      <li v-for="plat in plats" :key="plat.id" class="list-item">
         <strong>{{ plat.nom }}</strong> - {{ plat.description }} - Durée ({{ plat.duration }} min) - {{ plat.categorie?.nom }}
         <div class="ingredients-list">
           Ingrédients: {{ plat.ingredients?.map(ing => ing.nom).join(', ') }}
@@ -195,8 +195,8 @@ onMounted(() => {
             ingredients: plat.ingredients?.map(ing => ing.id) || []
           };
           console.log('Édition du plat avec catégorie:', categorieId);
-        }">Éditer</button>
-        <button @click="() => deletePlat(plat)">Supprimer</button>
+        }" class="btn-edit">Éditer</button>
+        <button @click="() => deletePlat(plat)" class="btn-delete">Supprimer</button>
       </li>
     </ul>
 
@@ -204,19 +204,19 @@ onMounted(() => {
       <h2>Édition du plat</h2>
       <div>
         <label for="nom">Nom</label>
-        <input id="nom" v-model="editPlat.nom" placeholder="Nom" required />
+        <input id="nom" v-model="editPlat.nom" class="input-field" placeholder="Nom" required />
       </div>
       <div>
         <label for="description">Description</label>
-        <textarea id="description" v-model="editPlat.description" required></textarea>
+        <textarea id="description" v-model="editPlat.description" class="textarea-field" required></textarea>
       </div>
       <div>
         <label for="duration">Durée (min)</label>
-        <input id="duration" type="number" v-model="editPlat.duration" required />
+        <input id="duration" type="number" v-model="editPlat.duration" class="input-field" required />
       </div>
       <div>
         <label for="categorie">Catégorie</label>
-        <select id="categorie" v-model="editPlat.categorie" required>
+        <select id="categorie" v-model="editPlat.categorie" class="select-field" required>
           <option value="" disabled>-- Sélectionnez une catégorie --</option>
           <option v-for="cat in categories" :key="cat.id" :value="cat.id">
             {{ cat.nom }}
@@ -224,7 +224,7 @@ onMounted(() => {
         </select>
       </div>
       <div class="ingredients-section">
-        <h3>Ingrédients</h3>
+        <h3 class="section-title">Ingrédients</h3>
         <div class="ingredients-grid">
           <div v-for="ingredient in ingredients" :key="ingredient.id" class="ingredient-item">
             <input
@@ -238,14 +238,15 @@ onMounted(() => {
         </div>
       </div>
       <div class="edit-actions">
-        <button @click="updatePlat">Mettre à jour</button>
-        <button @click="() => { editPlat = null; }">Annuler</button>
+        <button @click="updatePlat" class="btn-primary">Mettre à jour</button>
+        <button @click="() => { editPlat = null; }" class="btn-cancel">Annuler</button>
       </div>
     </div>
 
-    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
+
 
 <style scoped>
 * {
