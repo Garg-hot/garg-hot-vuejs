@@ -78,25 +78,26 @@ onMounted(() => {
     </div>
 
     <div class="form-container">
-      <!-- Formulaire d'ajout -->
-      <div class="categorie-form">
-        <h2>Ajouter un Ingrédient</h2>
-        <div class="add-form">
-          <input v-model="newIngredient.nom" placeholder="Nom de l'ingrédient" required />
-          <button @click="addIngredient">Ajouter</button>
+      <!-- Formulaire d'ajout et formulaire d'édition alignés horizontalement -->
+      <div class="form-wrapper">
+        <div class="categorie-form">
+          <h2>Ajouter un Ingrédient</h2>
+          <div class="add-form">
+            <input v-model="newIngredient.nom" placeholder="Nom de l'ingrédient" required />
+            <button @click="addIngredient">Ajouter</button>
+          </div>
         </div>
-      </div>
 
-      <!-- Formulaire d'édition -->
-      <div v-if="editIngredient" class="categorie-form edit-form">
-        <h2>Édition de l'ingrédient</h2>
-        <div>
-          <label for="nom">Nom</label>
-          <input id="nom" v-model="editIngredient.nom" placeholder="Nom" required />
-        </div>
-        <div class="edit-actions">
-          <button @click="updateIngredient">Mettre à jour</button>
-          <button @click="editIngredient = null">Annuler</button>
+        <div v-if="editIngredient" class="categorie-form edit-form">
+          <h2>Édition de l'ingrédient</h2>
+          <div>
+            <label for="nom">Nom</label>
+            <input id="nom" v-model="editIngredient.nom" placeholder="Nom" required />
+          </div>
+          <div class="edit-actions">
+            <button @click="updateIngredient">Mettre à jour</button>
+            <button @click="editIngredient = null">Annuler</button>
+          </div>
         </div>
       </div>
     </div>
@@ -119,25 +120,31 @@ onMounted(() => {
 .categorie-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   color: #000;
   gap: 30px;
 }
 
 .form-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 20px;
   width: 100%;
   max-width: 800px;
 }
 
+.form-wrapper {
+  display: flex;
+  gap: 20px; /* Espacement horizontal */
+  justify-content: space-between;
+  width: 100%;
+}
+
 .categorie-form {
   background: white;
-  padding: 20px;
+  padding: 30px;
   border: 2px solid #000;
-  width: 48%;
+  width: 45%; /* Largeur réduite pour l'alignement horizontal */
 }
 
 .categorie-list {
