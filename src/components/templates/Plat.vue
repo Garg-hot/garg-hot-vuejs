@@ -248,81 +248,147 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.add-form, .edit-form {
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  gap: 20px;
+  padding: 30px;
   max-width: 800px;
-  margin: 0 auto;
+  margin: auto;
+  background-color: white;
+  border: 2px solid #000;
 }
 
-.add-form input,
-.add-form textarea,
-.add-form select,
-.edit-form input,
-.edit-form textarea,
-.edit-form select {
+.add-form, .edit-form {
+  background: white;
+  padding: 20px;
+  border: 2px solid #000;
   width: 100%;
-  max-width: 600px;
+  margin-bottom: 20px;
 }
 
-.ingredients-section {
-  margin: 1rem 0;
+h1, h2, h3 {
+  color: #000;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+textarea, input[type="text"], input[type="number"], select {
   width: 100%;
-  max-width: 600px;
-  align-self: center;
+  padding: 10px;
+  border: 1px solid #000;
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 15px;
 }
 
-.ingredients-section h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  color: #666;
-  text-align: center;
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+select {
+  background-color: white;
+}
+
+button {
+  padding: 10px;
+  background: #f0f0f0;
+  border: 1px solid #000;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .ingredients-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.25rem;
-  margin: 0.5rem auto;
-  border: 1px solid #ddd;
-  padding: 0.5rem;
-  border-radius: 4px;
-  max-height: 200px;
-  overflow-y: auto;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
 }
 
 .ingredient-item {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  font-size: 0.9rem;
-  padding: 0.25rem;
 }
 
-.ingredient-item:nth-child(4n+1),
-.ingredient-item:nth-child(4n+2) {
-  background-color: #f9f9f9;
+.ingredient-item input {
+  margin-right: 10px;
 }
 
-.ingredients-list {
-  margin: 0.25rem 0;
-  font-size: 0.9rem;
-  color: #666;
-  text-align: center;
+.list {
+  list-style: none;
+  padding: 0;
 }
 
-.ingredients-list::before {
-  content: "🥗";
-  margin-right: 0.5rem;
-}
-
-.edit-actions {
+.list-item {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-  width: 100%;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 5px;
 }
+
+.list-item span {
+  font-size: 16px;
+}
+
+.list-item button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #f0f0f0;
+  border: 1px solid #000;
+  transition: background-color 0.3s;
+}
+
+.list-item button:hover {
+  background-color: #e0e0e0;
+}
+
+.list-item button.edit {
+  color: #27ae60;
+}
+
+.list-item button.delete {
+  color: #e74c3c;
+}
+
+.edit-actions button {
+  margin-right: 10px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.edit-form {
+  animation: slideIn 0.3s ease-out;
+}
+
 </style>
