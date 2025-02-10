@@ -5,10 +5,8 @@
       <li><router-link to="/categorie" class="nav-link">Categorie</router-link></li>
       <li><router-link to="/ingredient" class="nav-link">Ingredient</router-link></li>
       <li><router-link to="/plat" class="nav-link">Plat</router-link></li>
-      <li><router-link to="/prix" class="nav-link">Prix</router-link></li>
       <li><router-link to="/commande" class="nav-link">Commande</router-link></li>
-      <li><router-link to="#" class="nav-link">Stock</router-link></li>
-      <li><router-link to="#" class="nav-link">Vente</router-link></li>
+      <li><router-link to="/vente" class="nav-link">Vente</router-link></li>
     </ul>
   </nav>
 </template>
