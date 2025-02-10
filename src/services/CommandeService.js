@@ -59,7 +59,7 @@ const commandeService = {
    * @param {Object} commande 
    */
   updateCommande(id, commande) {
-    return axios.put(`${API_URL}/${id}`, commande, {
+    return axios.put(`${API_URL}/edit/${id}`, commande, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -76,7 +76,7 @@ const commandeService = {
    * @param {number} id 
    */
   deleteCommande(id) {
-    return axios.delete(`${API_URL}/${id}`, {
+    return axios.delete(`${API_URL}/delete/${id}`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -84,6 +84,23 @@ const commandeService = {
     .then(response => response.data)
     .catch(error => {
       console.error(`Erreur lors de la suppression de la commande ID ${id}:`, error);
+      throw error;
+    });
+  },
+
+  /**
+   * Récupère les plats d'une commande par son ID
+   * @param {number} id 
+   */
+  getPlatsByCommandeId(id) {
+    return axios.get(`${API_URL}/${id}/plats`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.data)
+    .catch(error => {
+      console.error(`Erreur lors de la récupération des plats pour la commande ID ${id}:`, error);
       throw error;
     });
   }
