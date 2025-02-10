@@ -4,6 +4,7 @@
       <li><router-link to="/" class="nav-link">Accueil</router-link></li>
       <li><router-link to="/categorie" class="nav-link">Categorie</router-link></li>
       <li><router-link to="/ingredient" class="nav-link">Ingredient</router-link></li>
+            <!-- prix -->
       <li><router-link to="/plat" class="nav-link">Plat</router-link></li>
       <li><router-link to="/commande" class="nav-link">Commande</router-link></li>
       <li><router-link to="/vente" class="nav-link">Vente</router-link></li>
