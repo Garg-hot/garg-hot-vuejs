@@ -85,35 +85,31 @@ onMounted(() => {
         <input v-model="newCategorie.nom" placeholder="Nom de la catégorie" required />
         <button @click="addCategorie">Ajouter</button>
       </div>
-    </div>
 
-    <!-- Liste des catégories -->
-    <div class="categorie-list">
+      <!-- Liste des catégories -->
       <ul>
-        <li v-for="categorie in categories" :key="categorie.id" class="categorie-item">
-          <span class="categorie-name">{{ categorie.nom }}</span>
-          <div class="categorie-actions">
-            <button @click="editCategorie = { ...categorie }" class="action-button edit">Éditer</button>
-            <button @click="deleteCategorie(categorie)" class="action-button delete">Supprimer</button>
-          </div>
+        <li v-for="categorie in categories" :key="categorie.id">
+          {{ categorie.nom }}
+          <button @click="editCategorie = { ...categorie }"class="action-button edit">Éditer</button>
+          <button @click="deleteCategorie(categorie)"class="action-button delete">Supprimer</button>
         </li>
       </ul>
-    </div>
 
-    <!-- Formulaire d'édition -->
-    <div v-if="editCategorie" class="edit-form">
-      <h2>Édition de la catégorie</h2>
-      <div>
-        <label for="nom">Nom</label>
-        <input id="nom" v-model="editCategorie.nom" placeholder="Nom" required />
-      </div>
-      <div>
-        <label for="slug">Slug</label>
-        <input id="slug" v-model="editCategorie.slug" placeholder="Slug" required />
-      </div>
-      <div class="edit-actions">
-        <button @click="updateCategorie">Mettre à jour</button>
-        <button @click="editCategorie = null">Annuler</button>
+      <!-- Formulaire d'édition -->
+      <div v-if="editCategorie" class="edit-form">
+        <h2>Édition de la catégorie</h2>
+        <div>
+          <label for="nom">Nom</label>
+          <input id="nom" v-model="editCategorie.nom" placeholder="Nom" required />
+        </div>
+        <div>
+          <label for="slug">Slug</label>
+          <input id="slug" v-model="editCategorie.slug" placeholder="Slug" required />
+        </div>
+        <div class="edit-actions">
+          <button @click="updateCategorie">Mettre à jour</button>
+          <button @click="editCategorie = null">Annuler</button>
+        </div>
       </div>
     </div>
   </div>
@@ -122,14 +118,12 @@ onMounted(() => {
 <style scoped>
 .categorie-container {
   display: flex;
-  justify-content: space-between;
   gap: 30px;
+  align-items: flex-start;
   color: #000;
-  margin-top: 20px;
 }
 
-.categorie-form,
-.categorie-list {
+.categorie-form {
   background: white;
   padding: 30px;
   border: 2px solid #000;
@@ -138,54 +132,101 @@ onMounted(() => {
 }
 
 .categorie-list {
-  flex: 1;
-  max-width: 600px;
+  background: white;
+  padding: 30px;
+  border: 2px solid #000;
+  width: 100%;
+  max-width: 500px;
 }
 
-h1, h2 {
-  font-size: 24px;
+.edit-form {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+h2 {
   margin-bottom: 20px;
+  font-size: 24px;
+  color: #000;
 }
 
-.add-form {
-  display: flex;
-  gap: 10px;
+.form-group {
+  margin-bottom: 15px;
 }
 
-.add-form input {
-  flex-grow: 1;
+.form-input {
+  width: 100%;
   padding: 10px;
   border: 1px solid #000;
   font-size: 16px;
+  color: #000;
 }
 
-.add-form button {
-  padding: 10px 15px;
-  background-color: #27ae60;
-  color: white;
-  border: 1px solid #27ae60;
+.form-button {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 2px solid #000;
   cursor: pointer;
+  font-size: 16px;
   transition: background-color 0.3s;
+  margin-bottom: 10px;
+  color: #000;
 }
 
-.add-form button:hover {
-  background-color: #2ecc71;
+.form-button:hover {
+  background-color: #f0f0f0;
 }
 
-.categorie-item {
+.form-button.save {
+  color: #27ae60;
+}
+
+.form-button.cancel {
+  color: #7f8c8d;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  border: 1px solid #000;
 }
 
-.categorie-name {
-  font-size: 18px;
-  font-weight: bold;
+.item-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
-.categorie-actions {
+.item-name {
+  font-size: 16px;
+  color: #000;
+}
+
+.item-quantity {
+  font-size: 14px;
+  color: #666;
+}
+
+.item-actions {
   display: flex;
   gap: 10px;
 }
@@ -209,38 +250,5 @@ h1, h2 {
 
 .action-button.delete {
   color: #e74c3c;
-}
-
-.edit-form {
-  background: white;
-  padding: 20px;
-  border: 2px solid #000;
-  max-width: 400px;
-}
-
-.edit-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.edit-actions button {
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.edit-actions button:first-child {
-  background-color: #27ae60;
-  color: white;
-  border: none;
-}
-
-.edit-actions button:last-child {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-}
-
-.edit-actions button:hover {
-  opacity: 0.9;
 }
 </style>
